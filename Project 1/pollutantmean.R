@@ -1,34 +1,24 @@
 pollutantmean <- function(directory, pollutant, id = 1:332){
     
-    # setwd("C:/Users/Mallika/Documents/Romit/R/Coursera R Programming/Projects/RProgrammingProjects/Project 1")
-    
-    df <- data.frame() # initialise a data frame
-    dfsub <- data.frame()
-    
-    
-    # Step 1: Convert the id into a char vector idchar, with element len=3
-    #  
-    idchar <- sprintf("%03d",id)
+    # Initialist a data frame which will be in the FOR loop
+    df <- data.frame()
+
     
     
-    
-    # Step 2: Create a loop indexing over length of idchar
-    # 
-    # Step 3: Read  and rbind into df
-    #
-    # Step 4: At the end of the loop take the mean of df$pollutant
-    
-    
-    
-    
-    
-    
-    for (i in 1:length(idchar)) {
-        df <- rbind(df, read.csv(paste(paste(as.character(directory),idchar[i], sep="/"),".csv", sep="")))        
+    for (i in id) {
+        
+        # Convert the numeric id into char filename with 3 characters along with ".csv"
+        filename <- sprintf("%03d.csv",i)
+        
+        # Construct path string using directory and filename
+        filepath <- paste(directory,filename,sep="/")
+        
+        # Use rbind to build up a dataframe of passed ids
+        df <- rbind(df, read.csv(filepath))        
     }
-    
-    
-mean(df[,eval(pollutant)], na.rm=TRUE)   
+
+    # At the end of the loop, determine the mean of column "pollutant", ignoring NAs
+    mean(df[,pollutant], na.rm=TRUE)   
     
     
 }
