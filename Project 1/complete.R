@@ -1,6 +1,6 @@
 complete <- function(directory, id = 1:332){
     
-    # Initialist a data frame which will be in the FOR loop
+    # Initialise the data frame which will be in the FOR loop
     df <- data.frame()
 
     for (i in id) {
