@@ -26,5 +26,8 @@ corr <- function(directory, threshold=0){
         #}
         
     }
-    corr
+    
+    # Coerce the vector to be numeric in the case that there are no monitors that meet
+    # the threshold
+    as.numeric(corr)
 }
