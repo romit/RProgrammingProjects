@@ -12,7 +12,8 @@ complete <- function(directory, id = 1:332){
         filepath <- paste(directory,filename,sep="/")
         
         # Read the file
-        d <- read.csv(filepath) 
+        # Remove rows with any NAs by na.omit (read only complete cases)
+        d <- na.omit(read.csv(filepath)) 
         
         # Use rbind to build up a dataframe of passed ids
         df <- rbind(df, c(i,nrow(d)))
